@@ -1,20 +1,17 @@
 import React from "react";
+import { ContactCard } from "./ContactCard";
 
-const ContactList = props => {
-  console.log(props);
-
+export const ContactList = props => {
+  const deleteContactValorQualquer = id => {
+    props.getContactId(id);
+  };
   const renderContactList = props.contacts.map(contact => {
     return (
-      <div className="lh-sm">
-        <div>
-          <div className="fs-3">{contact.name}</div>
-          <div className="fw-light fs-5">{contact.email}</div>
-        </div>
-        <div className="text-end fs-5">
-          <i className="bi-trash text-danger "></i>
-        </div>
-        <hr />
-      </div>
+      <ContactCard
+        contact={contact}
+        clickValorQualquer={deleteContactValorQualquer}
+        key={contact.id}
+      />
     );
   });
   return (
@@ -23,5 +20,3 @@ const ContactList = props => {
     </div>
   );
 };
-
-export default ContactList;
